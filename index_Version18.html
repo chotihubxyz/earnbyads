@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Earn By Ads</title>
+    <!-- Monetag SDK Script -->
+    <script src='//libtl.com/sdk.js' data-zone='9700803' data-sdk='show_9700803'></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5fa; /* Back to previous color */
+        color: #222;
+      }
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px 10px 80px 10px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+        margin-top: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #4a90e2;
+      }
+      .balance {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #388e3c;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+      .limit-info {
+        font-size: 0.95em;
+        text-align: center;
+        margin-bottom: 16px;
+        color: #555;
+      }
+      .status {
+        text-align: center;
+        margin-bottom: 12px;
+        color: #e64a19;
+        font-size: 0.98em;
+        min-height: 22px;
+      }
+      .ad-buttons {
+        display: flex;
+        gap: 7px;
+        margin-bottom: 18px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        background: #4a90e2;
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        padding: 10px 15px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn:hover { background: #357abd; }
+      .footer-nav {
+        position: fixed;
+        left: 0; bottom: 0;
+        width: 100%;
+        background: #eee;
+        border-top: 1px solid #ddd;
+        padding: 8px 0 5px 0;
+        text-align: center;
+        z-index: 50;
+      }
+      .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .footer-nav button {
+        background: #4a90e2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 6px 18px;
+        font-size: 1.07em;
+        margin: 0 7px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .footer-nav button:hover {
+        background: #357abd;
+        color: #fff;
+      }
+      .withdraw-methods-pop, .page-pop {
+        display: none;
+        position: fixed;
+        left: 50%;
+        bottom: 60px;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 1px solid #bbb;
+        border-radius: 10px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+        padding: 18px 18px 10px 18px;
+        min-width: 280px;
+        z-index: 999;
+        text-align: center;
+      }
+      .withdraw-methods-pop h4, .page-pop h4 {
+        margin: 0 0 10px 0;
+        color: #388e3c;
+      }
+      .withdraw-method-btn {
+        display: block;
+        width: 90%;
+        margin: 7px auto;
+        background: #4a90e2;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 0;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.17s;
+      }
+      .withdraw-method-btn:hover { background: #357abd; }
+      .withdraw-methods-pop .close-btn, .page-pop .close-btn {
+        margin-top: 10px;
+        background: #e64a19;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 18px;
+        cursor: pointer;
+      }
+      .page-pop .page-content {
+        margin-top: 10px;
+        font-size: 1em;
+        color: #222;
+      }
+      .invite-link {
+        background: #fff;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        padding: 7px;
+        margin-top: 7px;
+        font-size: 1em;
+        word-break: break-all;
+      }
+      .copy-btn, .refer-btn {
+        background: #4a90e2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 12px;
+        font-size: 0.97em;
+        cursor: pointer;
+        margin-top: 7px;
+        margin-right: 7px;
+      }
+      .copy-btn:hover, .refer-btn:hover { background: #357abd; }
+      .ref-info {
+        margin-top: 7px;
+        color: #388e3c;
+        font-size: 1em;
+      }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainHome">
+        <h2>Earn By Ads</h2>
+        <div class="balance">$ <span id="balanceAmount">0.00</span></div>
+        <div class="limit-info">Today's maximum ad view limit: <span id="adLimit">100</span></div>
+        <div class="status" id="status"></div>
+        <div class="ad-buttons">
+            <button class="btn" id="rewardedBtn">Rewarded Interstitial Ad</button>
+            <button class="btn" id="popupBtn">Rewarded Popup Ad</button>
+            <button class="btn" id="watchAdsBtn">Watch Ads</button>
+            <a class="btn" href="https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5" target="_blank" rel="noopener" id="bonus1Btn">Bonus 1</a>
+            <a class="btn" href="https://otieu.com/4/8722771" target="_blank" rel="noopener" id="bonus2Btn">Bonus 2</a>
+        </div>
+    </div>
+    <!-- Refer Page Popup -->
+    <div class="page-pop" id="referPop">
+        <h4>Refer & Earn</h4>
+        <div class="page-content">
+            <div>Share this link with friends and earn $0.50 for each successful referral!</div>
+            <div class="invite-link" id="referInviteLink"></div>
+            <button class="copy-btn" id="referCopyBtn">Copy Refer Link</button>
+            <div class="ref-info" id="refInfo"></div>
+        </div>
+        <button class="close-btn" id="referPopCloseBtn">Close</button>
+    </div>
+    <!-- Withdraw Methods Popup (select method) -->
+    <div class="withdraw-methods-pop" id="withdrawMethodsPop">
+        <h4>Select Withdraw Method</h4>
+        <button class="withdraw-method-btn" data-method="nagad">Nagad</button>
+        <button class="withdraw-method-btn" data-method="bkash">Bkash</button>
+        <button class="withdraw-method-btn" data-method="usdt">USDT TRC20</button>
+        <button class="close-btn" id="withdrawPopCloseBtn">Close</button>
+        <div style="margin-top:10px;font-size:0.97em;color:#555;">
+            Minimum withdraw: $50
+        </div>
+    </div>
+    <!-- Withdraw Form Modal (hidden, will show after selecting method) -->
+    <div class="withdraw-methods-pop" id="withdrawFormPop" style="display:none;">
+        <h4 id="withdrawMethodTitle">Withdraw</h4>
+        <form id="withdrawForm">
+            <div class="form-group">
+                <label for="wallet">Wallet Number</label>
+                <input type="text" id="wallet" name="wallet" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Withdraw Amount ($)</label>
+                <input type="number" id="amount" name="amount" min="50" max="50000" required step="0.01">
+            </div>
+            <button type="submit" class="withdraw-btn">Withdraw</button>
+        </form>
+        <button class="close-btn" id="withdrawFormPopCloseBtn">Close</button>
+    </div>
+    <footer class="footer-nav">
+        <div class="footer-content">
+            <button id="footerHomeBtn">Home</button>
+            <button class="refer-btn" id="footerReferBtn">Refer</button>
+            <button id="footerWithdrawBtn">Withdraw</button>
+        </div>
+    </footer>
+    <script>
+        // Configuration
+        const DAILY_AD_LIMIT = 100;
+        const REWARD_AMOUNT = 0.05; // 1 ad view = $0.05
+        const MIN_WITHDRAW = 50;
+        const REF_REWARD = 0.50; // Successful referral = $0.50
+
+        // User state
+        let state = {
+            balance: 0.00,
+            dailyAdCount: 0,
+            referralCount: 0
+        };
+
+        // Withdraw method state
+        let selectedMethod = "";
+
+        // UI update function
+        function updateUI() {
+            document.getElementById('balanceAmount').innerText = state.balance.toFixed(2);
+            document.getElementById('adLimit').innerText = DAILY_AD_LIMIT - state.dailyAdCount;
+            document.getElementById('refInfo').innerText = `You have earned $${(state.referralCount * REF_REWARD).toFixed(2)} from referrals.`;
+        }
+
+        // Status message
+        function showStatus(msg, type='info') {
+            const st = document.getElementById('status');
+            st.innerText = msg;
+            st.style.color = type === 'error' ? '#e64a19' : (type === 'success' ? '#388e3c' : '#4a90e2');
+            setTimeout(() => { st.innerText = ''; }, 3000);
+        }
+
+        // Ad reward
+        function handleAdSuccess() {
+            if (state.dailyAdCount < DAILY_AD_LIMIT) {
+                state.balance += REWARD_AMOUNT;
+                state.dailyAdCount += 1;
+                updateUI();
+                showStatus(`You have earned $${REWARD_AMOUNT.toFixed(2)} by watching an ad!`, 'success');
+            } else {
+                showStatus("Today's ad view limit reached!", 'error');
+            }
+        }
+        function handleAdError() {
+            showStatus('Ad failed to load, please try again.', 'error');
+        }
+
+        // Referral reward (simulate a successful referral)
+        function handleReferral() {
+            state.referralCount += 1;
+            state.balance += REF_REWARD;
+            updateUI();
+            showStatus(`Referral successful! You earned $${REF_REWARD.toFixed(2)}.`, 'success');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateUI();
+
+            // In-App Interstitial: auto show ads when app loads
+            show_9700803({
+                type: 'inApp',
+                inAppSettings: {
+                    frequency: 2,
+                    capping: 0.1,
+                    interval: 30,
+                    timeout: 5,
+                    everyPage: false
+                }
+            });
+
+            // Rewarded Interstitial Ad
+            document.getElementById('rewardedBtn').addEventListener('click', function() {
+                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
+                    showStatus("Today's ad view limit reached!", 'error');
+                    return;
+                }
+                show_9700803().then(() => {
+                    handleAdSuccess();
+                }).catch(handleAdError);
+            });
+
+            // Rewarded Popup Ad
+            document.getElementById('popupBtn').addEventListener('click', function() {
+                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
+                    showStatus("Today's ad view limit reached!", 'error');
+                    return;
+                }
+                show_9700803('pop').then(() => {
+                    handleAdSuccess();
+                }).catch(handleAdError);
+            });
+
+            // Watch Ads (Rewarded Interstitial)
+            document.getElementById('watchAdsBtn').addEventListener('click', function() {
+                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
+                    showStatus("Today's ad view limit reached!", 'error');
+                    return;
+                }
+                show_9700803().then(() => {
+                    handleAdSuccess();
+                }).catch(handleAdError);
+            });
+
+            // Footer navigation logic
+            // Home button shows main home section, hides others
+            document.getElementById('footerHomeBtn').addEventListener('click', function() {
+                document.getElementById('mainHome').style.display = 'block';
+                document.getElementById('referPop').style.display = 'none';
+                document.getElementById('withdrawMethodsPop').style.display = 'none';
+                document.getElementById('withdrawFormPop').style.display = 'none';
+            });
+
+            // Refer button logic (show refer page, hide others)
+            const referPop = document.getElementById('referPop');
+            document.getElementById('footerReferBtn').addEventListener('click', function() {
+                document.getElementById('mainHome').style.display = 'none';
+                referPop.style.display = 'block';
+                document.getElementById('withdrawMethodsPop').style.display = 'none';
+                document.getElementById('withdrawFormPop').style.display = 'none';
+            });
+            document.getElementById('referPopCloseBtn').addEventListener('click', function() {
+                referPop.style.display = 'none';
+                document.getElementById('mainHome').style.display = 'block';
+            });
+
+            // Withdraw Footer button logic (show withdraw page, hide others)
+            const withdrawMethodsPop = document.getElementById('withdrawMethodsPop');
+            const withdrawFormPop = document.getElementById('withdrawFormPop');
+            const withdrawMethodTitle = document.getElementById('withdrawMethodTitle');
+            document.getElementById('footerWithdrawBtn').addEventListener('click', function() {
+                document.getElementById('mainHome').style.display = 'none';
+                referPop.style.display = 'none';
+                withdrawMethodsPop.style.display = 'block';
+                withdrawFormPop.style.display = 'none';
+            });
+            document.getElementById('withdrawPopCloseBtn').addEventListener('click', function() {
+                withdrawMethodsPop.style.display = 'none';
+                document.getElementById('mainHome').style.display = 'block';
+            });
+            document.getElementById('withdrawFormPopCloseBtn').addEventListener('click', function() {
+                withdrawFormPop.style.display = 'none';
+                document.getElementById('mainHome').style.display = 'block';
+            });
+
+            // Withdraw method select
+            Array.from(document.querySelectorAll('.withdraw-method-btn')).forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    selectedMethod = btn.getAttribute('data-method');
+                    withdrawMethodTitle.innerText = `Withdraw - ${selectedMethod.charAt(0).toUpperCase() + selectedMethod.slice(1)}`;
+                    withdrawMethodsPop.style.display = 'none';
+                    withdrawFormPop.style.display = 'block';
+                });
+            });
+
+            // Withdraw form logic
+            document.getElementById('withdrawForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const wallet = document.getElementById('wallet').value.trim();
+                const amount = parseFloat(document.getElementById('amount').value);
+
+                if (!wallet || wallet.length < 8) {
+                    showStatus('Please enter a valid wallet number!', 'error');
+                    return;
+                }
+                if (amount < MIN_WITHDRAW) {
+                    showStatus(`Minimum withdraw is $${MIN_WITHDRAW}`, 'error');
+                    return;
+                }
+                if (amount > state.balance) {
+                    showStatus('Insufficient balance!', 'error');
+                    return;
+                }
+
+                showStatus(`Withdraw request sent! Method: ${selectedMethod}, Amount: $${amount.toFixed(2)}`, 'success');
+                state.balance -= amount;
+                updateUI();
+                document.getElementById('withdrawForm').reset();
+                withdrawFormPop.style.display = 'none';
+                document.getElementById('mainHome').style.display = 'block';
+            });
+
+            // Invite/refer logic
+            const userId = "user12345"; // Replace with dynamic user ID if available
+            const inviteURL = `https://yourapp.com/invite?ref=${userId}`;
+            document.getElementById('referInviteLink').innerText = inviteURL;
+
+            document.getElementById('referCopyBtn').addEventListener('click', function() {
+                navigator.clipboard.writeText(inviteURL).then(() => {
+                    showStatus("Refer link copied!", "success");
+                });
+            });
+
+            updateUI();
+        });
+    </script>
+</body>
+</html>
