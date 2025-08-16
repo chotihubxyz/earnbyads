@@ -126,12 +126,11 @@
           <div id="refEarnings">$0.00</div>
         </div>
       </div>
-      <div class="limit">Today's remaining ad views: <strong id="adLimit">100</strong></div>
+      <div class="limit">Today's remaining ad views: <strong id="adLimit">50</strong></div>
       <div class="status" id="status"></div>
       <div class="actions">
         <button class="btn" id="watchAdBtn">watch ad 1</button>
         <button class="btn" id="bonus1Btn">watch ad 2</button>
-        <button class="btn" id="bonus2Btn">watch ad 3</button>
       </div>
       <!-- SPIN SECTION -->
       <div class="spin-card" style="margin-top:22px;">
@@ -291,7 +290,7 @@
     };
 
     // ---- Demo balance system for ad buttons ----
-    const DAILY_AD_LIMIT = 100;
+    const DAILY_AD_LIMIT = 50;
     const WATCH_REWARD = 0.05;
     const BONUS_REWARD = 0.06;
     const REF_REWARD = 0.50;
@@ -315,26 +314,12 @@
       setTimeout(()=>{el.innerText='';},time);
     }
 
-    // Watch Ad 1 (Interstitial)
-    document.getElementById('watchAdBtn').addEventListener('click',()=>{
-      if(state.dailyAdCount>=DAILY_AD_LIMIT){showStatus("Limit reached",'error');return;}
-      if(typeof show_9700803!=='function'){showStatus("Ad not ready",'error');return;}
-      show_9700803().then(()=>{
-        state.dailyAdCount++;
-        state.balance=+(state.balance+WATCH_REWARD).toFixed(2);
-        saveState();updateUI();showStatus(`+ $${WATCH_REWARD.toFixed(2)}`,'success');
-      }).catch(()=>{
-        showStatus('Ad not completed','error');
-      });
-    });
-
-    // Watch Ad 2 - Popup Rewarded
-    document.getElementById('bonus1Btn').onclick = function() {
-      if(typeof show_9700803 !== 'function'){
-        showStatus("Ad not ready",'error');
-        return;
-      }
+    // Watch Ad 1: Rewarded Popup (রিওয়ার্ডসহ সরাসরি অফার পেজ)
+    document.getElementById('watchAdBtn').onclick = function() {
+      if(state.dailyAdCount >= DAILY_AD_LIMIT) { showStatus("Limit reached",'error'); return; }
+      if(typeof show_9700803 !== 'function') { showStatus("Ad not ready",'error'); return; }
       show_9700803('pop').then(()=>{
+        state.dailyAdCount++;
         state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
         saveState();
         updateUI();
@@ -344,28 +329,18 @@
       });
     };
 
-    // Watch Ad 3 - In-App Interstitial
-    document.getElementById('bonus2Btn').onclick = function() {
-      if(typeof show_9700803 !== 'function'){
-        showStatus("Ad not ready",'error');
-        return;
-      }
-      show_9700803({
-        type: 'inApp',
-        inAppSettings: {
-          frequency: 1,
-          capping: 0.1,
-          interval: 30,
-          timeout: 2,
-          everyPage: false
-        }
-      }).then(()=>{
-        state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
+    // Watch Ad 2: Rewarded Interstitial (রিওয়ার্ডসহ ব্যানার অ্যাড)
+    document.getElementById('bonus1Btn').onclick = function() {
+      if(state.dailyAdCount >= DAILY_AD_LIMIT) { showStatus("Limit reached",'error'); return; }
+      if(typeof show_9700803 !== 'function') { showStatus("Ad not ready",'error'); return; }
+      show_9700803().then(()=>{
+        state.dailyAdCount++;
+        state.balance = +(state.balance + WATCH_REWARD).toFixed(2);
         saveState();
         updateUI();
-        showStatus(`+ $${BONUS_REWARD.toFixed(2)}`, 'success');
+        showStatus(`+ $${WATCH_REWARD.toFixed(2)}`,'success');
       }).catch(()=>{
-        showStatus('Ad not completed', 'error');
+        showStatus('Ad not completed','error');
       });
     };
 
