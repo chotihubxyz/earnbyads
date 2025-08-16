@@ -126,7 +126,7 @@
           <div id="refEarnings">$0.00</div>
         </div>
       </div>
-      <div class="limit">Today's remaining ad views: <strong id="adLimit">50</strong></div>
+      <div class="limit">Today's remaining ad views: <strong id="adLimit">100</strong></div>
       <div class="status" id="status"></div>
       <div class="actions">
         <button class="btn" id="watchAdBtn">▶️Watch Ads1</button>
@@ -194,10 +194,6 @@
     // Spin section config and logic
     const spinRewards = [0.02, 0.05, 0.10, 0.15, 0.02, 0.04];
     const spinColors = ["#ff5252","#ffd600","#00e676","#2979ff","#f500a0","#ff9100"];
-    const spinLinks = [
-      "https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5",
-      "https://countlessdispleased.com/ewjnjyjwji?key=b2e69c19f9b07186c0506ba472bc907d"
-    ];
     const spinSVG = document.getElementById("spinSVG");
     const spinLabelMain = document.getElementById("spinLabelMain");
     const spinPrizeLabel = document.getElementById("spinPrizeLabel");
@@ -248,7 +244,7 @@
     }
     drawWheel();
 
-    // Spin event: Now clicking spin-label-main triggers the spin
+    // Spin event: clicking spin-label-main triggers the spin and shows Rewarded Popup ad (no direct link)
     spinLabelMain.onclick = function(){
       if(spinning) return;
       spinning=true;
@@ -264,6 +260,7 @@
       spinSVG.style.transition = "transform 2.7s cubic-bezier(.23,1.57,.51,.97)";
       spinSVG.style.transform = `rotate(${finalAngle}deg)`;
       spinSVG.style.filter = "drop-shadow(0 8px 40px #0b79d099) blur(0.5px)";
+
       setTimeout(()=>{
         spinSVG.style.transition = "";
         spinSVG.style.transform = `rotate(${(finalAngle%360)}deg)`;
@@ -271,16 +268,21 @@
         spinLabelMain.innerText = "WIN!";
         spinPrizeLabel.innerText = `+${reward.toFixed(2)}`;
         spinPrizeLabel.classList.add("show");
-        // ব্যালেন্স যোগ ও সেভ (ডেমো)
-        let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
-        if(state){
-          state.balance = +(state.balance + reward).toFixed(2);
-          localStorage.setItem('earn_state_v2',JSON.stringify(state));
-          if(typeof updateUI==='function') updateUI();
+
+        // Rewarded Popup ad show (no direct link)
+        if(typeof show_9700803 === 'function'){
+          show_9700803('pop').then(()=>{
+            let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
+            if(state){
+              state.balance = +(state.balance + reward).toFixed(2);
+              localStorage.setItem('earn_state_v2',JSON.stringify(state));
+              if(typeof updateUI==='function') updateUI();
+            }
+          }).catch(()=>{
+            // If ad not completed, do not add reward
+          });
         }
-        setTimeout(()=>{
-          window.open(spinLinks[Math.floor(Math.random()*spinLinks.length)], "_blank");
-        }, 500);
+
         setTimeout(()=>{
           spinPrizeLabel.classList.remove("show");
           spinLabelMain.innerText="SPIN";
@@ -290,7 +292,7 @@
     };
 
     // ---- Demo balance system for ad buttons ----
-    const DAILY_AD_LIMIT = 50;
+    const DAILY_AD_LIMIT = 100;
     const WATCH_REWARD = 0.05;
     const BONUS_REWARD = 0.06;
     const REF_REWARD = 0.50;
@@ -426,4 +428,4 @@
     };
   </script>
 </body>
-  </html>
+            </html>
