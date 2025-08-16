@@ -1,431 +1,413 @@
-<!DOCTYPE html>
-<html lang="en">
+                <!DOCTYPE html>
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Earn By Ads</title>
-    <!-- Monetag SDK Script -->
-    <script src='//libtl.com/sdk.js' data-zone='9700803' data-sdk='show_9700803'></script>
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f5f5fa; /* Back to previous color */
-        color: #222;
-      }
-      .container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px 10px 80px 10px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 14px rgba(0,0,0,0.08);
-        margin-top: 20px;
-      }
-      h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #4a90e2;
-      }
-      .balance {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #388e3c;
-        text-align: center;
-        margin-bottom: 12px;
-      }
-      .limit-info {
-        font-size: 0.95em;
-        text-align: center;
-        margin-bottom: 16px;
-        color: #555;
-      }
-      .status {
-        text-align: center;
-        margin-bottom: 12px;
-        color: #e64a19;
-        font-size: 0.98em;
-        min-height: 22px;
-      }
-      .ad-buttons {
-        display: flex;
-        gap: 7px;
-        margin-bottom: 18px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .btn {
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 7px;
-        padding: 10px 15px;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .btn:hover { background: #357abd; }
-      .footer-nav {
-        position: fixed;
-        left: 0; bottom: 0;
-        width: 100%;
-        background: #eee;
-        border-top: 1px solid #ddd;
-        padding: 8px 0 5px 0;
-        text-align: center;
-        z-index: 50;
-      }
-      .footer-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-      .footer-nav button {
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 6px 18px;
-        font-size: 1.07em;
-        margin: 0 7px;
-        cursor: pointer;
-        transition: background 0.15s;
-      }
-      .footer-nav button:hover {
-        background: #357abd;
-        color: #fff;
-      }
-      .withdraw-methods-pop, .page-pop {
-        display: none;
-        position: fixed;
-        left: 50%;
-        bottom: 60px;
-        transform: translateX(-50%);
-        background: #fff;
-        border: 1px solid #bbb;
-        border-radius: 10px;
-        box-shadow: 0 6px 24px rgba(0,0,0,0.10);
-        padding: 18px 18px 10px 18px;
-        min-width: 280px;
-        z-index: 999;
-        text-align: center;
-      }
-      .withdraw-methods-pop h4, .page-pop h4 {
-        margin: 0 0 10px 0;
-        color: #388e3c;
-      }
-      .withdraw-method-btn {
-        display: block;
-        width: 90%;
-        margin: 7px auto;
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 8px 0;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background 0.17s;
-      }
-      .withdraw-method-btn:hover { background: #357abd; }
-      .withdraw-methods-pop .close-btn, .page-pop .close-btn {
-        margin-top: 10px;
-        background: #e64a19;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 5px 18px;
-        cursor: pointer;
-      }
-      .page-pop .page-content {
-        margin-top: 10px;
-        font-size: 1em;
-        color: #222;
-      }
-      .invite-link {
-        background: #fff;
-        border: 1px solid #bbb;
-        border-radius: 5px;
-        padding: 7px;
-        margin-top: 7px;
-        font-size: 1em;
-        word-break: break-all;
-      }
-      .copy-btn, .refer-btn {
-        background: #4a90e2;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 5px 12px;
-        font-size: 0.97em;
-        cursor: pointer;
-        margin-top: 7px;
-        margin-right: 7px;
-      }
-      .copy-btn:hover, .refer-btn:hover { background: #357abd; }
-      .ref-info {
-        margin-top: 7px;
-        color: #388e3c;
-        font-size: 1em;
-      }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Earn By Ads</title>
+
+  <!-- Monetag SDK -->
+  <script src="//libtl.com/sdk.js" data-zone="9700803" data-sdk="show_9700803"></script>
+  <!-- Social Bar ad -->
+  <script type='text/javascript' src='//countlessdispleased.com/0c/a0/9b/0ca09b57cba5d19bf1f445abde6dbdbf.js'></script>
+
+  <style>
+    :root{
+      --primary:#0b79d0;
+      --success:#2e8b57;
+      --danger:#e64a19;
+      --card:#ffffff;
+      --bg1:#f0f9ff;
+      --bg2:#dff0ff;
+      --muted:#59616a;
+    }
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      padding-bottom:90px;
+    }
+    .wrap{max-width:440px;margin:18px auto 120px;padding:18px;}
+    .card{background:var(--card);border-radius:12px;box-shadow:0 6px 20px rgba(12,35,55,0.08);padding:18px;}
+    header h1{margin:0 0 8px;font-size:20px;color:var(--primary);}
+    .subtitle{font-size:13px;color:var(--muted);margin-bottom:14px}
+    .balance{display:flex;justify-content:space-between;gap:12px;padding:12px;background:linear-gradient(90deg, rgba(11,121,208,0.06), rgba(46,139,87,0.03));border-radius:10px;margin-bottom:12px;}
+    .balance .amount{font-size:1.6rem;font-weight:700;color:var(--success)}
+    .balance .meta{font-size:13px;color:var(--muted)}
+    .limit{text-align:center;margin-bottom:12px;color:var(--muted);font-size:14px;}
+    .status{height:26px;text-align:center;margin-bottom:12px;font-weight:600;}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;}
+    .btn{
+      background:var(--primary);color:#fff;border:none;padding:10px 14px;border-radius:9px;
+      cursor:pointer;font-weight:600;box-shadow:0 6px 12px rgba(11,121,208,0.12);
+      text-decoration:none;display:inline-block;text-align:center;
+    }
+    .btn.ghost{background:transparent;color:var(--primary);border:1px solid rgba(11,121,208,0.12)}
+    .footer{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,0.98);border-top:1px solid #e7eef8;padding:10px 8px;display:flex;justify-content:center;gap:10px;z-index:1200;box-shadow:0 -6px 20px rgba(12,35,55,0.03);}
+    .popup{display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);min-width:300px;max-width:92%;background:var(--card);border-radius:12px;padding:16px;box-shadow:0 10px 40px rgba(0,0,0,0.12);z-index:2000;}
+    .popup h3{margin:0 0 8px;color:var(--primary)}
+
+    /* SPIN section styles */
+    .spin-card {
+      margin: 22px 0 20px 0;
+      padding: 18px 0 6px 0;
+      background: linear-gradient(120deg, #f9d423, #ff4e50, #43cea2, #185a9d);
+      border-radius: 18px;
+      box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+      text-align: center;
+      position: relative;
+    }
+    .spin-wheel-outer {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+      position:relative;
+    }
+    .spin-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #222;
+      pointer-events: none;
+      user-select: none;
+      z-index: 5;
+    }
+    .spin-btn {
+      margin: 16px auto 2px auto;
+      padding: 12px 33px;
+      background: linear-gradient(90deg,#2af598,#009efd);
+      color: #fff;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,110,255,0.13);
+      transition: background .2s, transform .18s;
+      outline: none;
+      display: block;
+    }
+    .spin-btn:active {
+      transform: scale(.97);
+      background: linear-gradient(90deg,#ff5858,#f09819);
+    }
+    /* Indicator Arrow */
+    .spin-indicator {
+      position:absolute;
+      left:50%;
+      top:6px;
+      transform:translateX(-50%);
+      z-index:2;
+      pointer-events:none;
+    }
+  </style>
 </head>
-    <script type='text/javascript' src='//countlessdispleased.com/0c/a0/9b/0ca09b57cba5d19bf1f445abde6dbdbf.js'></script>
 <body>
-    <div class="container" id="mainHome">
-        <h2>Earn By Ads</h2>
-        <div class="balance">$ <span id="balanceAmount">0.00</span></div>
-        <div class="limit-info">Today's maximum ad view limit: <span id="adLimit">100</span></div>
-        <div class="status" id="status"></div>
-        <div class="ad-buttons">
-            <button class="btn" id="rewardedBtn">Rewarded Interstitial Ad</button>
-            <button class="btn" id="popupBtn">Rewarded Popup Ad</button>
-            <button class="btn" id="watchAdsBtn">Watch Ads</button>
-            <a class="btn" href="https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5" target="_blank" rel="noopener" id="bonus1Btn">Bonus 1</a>
-            <a class="btn" href="https://otieu.com/4/8722771" target="_blank" rel="noopener" id="bonus2Btn">Bonus 2</a>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1>Earn By Ads</h1>
+        <div class="subtitle">Watch ads → earn. Refer friends → extra bonus.</div>
+      </header>
+
+      <div class="balance">
+        <div>
+          <div class="small-muted">Your Balance</div>
+          <div class="amount">$ <span id="balanceAmount">0.00</span></div>
         </div>
-    </div>
-    <!-- Refer Page Popup -->
-    <div class="page-pop" id="referPop">
-        <h4>Refer & Earn</h4>
-        <div class="page-content">
-            <div>Share this link with friends and earn $0.50 for each successful referral!</div>
-            <div class="invite-link" id="referInviteLink"></div>
-            <button class="copy-btn" id="referCopyBtn">Copy Refer Link</button>
-            <div class="ref-info" id="refInfo"></div>
+        <div class="meta">
+          <div class="small-muted">Ref Earnings</div>
+          <div id="refEarnings">$0.00</div>
         </div>
-        <button class="close-btn" id="referPopCloseBtn">Close</button>
-    </div>
-    <!-- Withdraw Methods Popup (select method) -->
-    <div class="withdraw-methods-pop" id="withdrawMethodsPop">
-        <h4>Select Withdraw Method</h4>
-        <button class="withdraw-method-btn" data-method="nagad">Nagad</button>
-        <button class="withdraw-method-btn" data-method="bkash">Bkash</button>
-        <button class="withdraw-method-btn" data-method="usdt">USDT TRC20</button>
-        <button class="close-btn" id="withdrawPopCloseBtn">Close</button>
-        <div style="margin-top:10px;font-size:0.97em;color:#555;">
-            Minimum withdraw: $50
+      </div>
+      <div class="limit">Today's remaining ad views: <strong id="adLimit">100</strong></div>
+      <div class="status" id="status"></div>
+
+      <div class="actions">
+        <button class="btn" id="watchAdBtn">Watch Ad</button>
+        <button class="btn" id="bonus1Btn">Bonus 1</button>
+        <button class="btn" id="bonus2Btn">Bonus 2</button>
+      </div>
+
+      <!-- SPIN SECTION: ডিজিটাল উন্নত স্পিন হুইল -->
+      <div class="spin-card">
+        <div class="spin-wheel-outer">
+          <svg id="spinSVG" width="120" height="120" viewBox="0 0 120 120" style="display:block;margin:0 auto;">
+            <!-- স্লাইসগুলো JS দিয়ে জেনারেট হবে -->
+          </svg>
+          <!-- Indicator -->
+          <div class="spin-indicator">
+            <svg width="26" height="26" viewBox="0 0 26 26">
+              <polygon points="13,0 26,26 0,26" fill="#ffd600" stroke="#222" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="spin-label" id="spinLabel">?</div>
         </div>
+        <button class="spin-btn" id="spinBtn">Spin & Win</button>
+      </div>
+      <!-- END SPIN SECTION -->
+
     </div>
-    <!-- Withdraw Form Modal (hidden, will show after selecting method) -->
-    <div class="withdraw-methods-pop" id="withdrawFormPop" style="display:none;">
-        <h4 id="withdrawMethodTitle">Withdraw</h4>
-        <form id="withdrawForm">
-            <div class="form-group">
-                <label for="wallet">Wallet Number</label>
-                <input type="text" id="wallet" name="wallet" required>
-            </div>
-            <div class="form-group">
-                <label for="amount">Withdraw Amount ($)</label>
-                <input type="number" id="amount" name="amount" min="50" max="50000" required step="0.01">
-            </div>
-            <button type="submit" class="withdraw-btn">Withdraw</button>
-        </form>
-        <button class="close-btn" id="withdrawFormPopCloseBtn">Close</button>
-    </div>
-    <footer class="footer-nav">
-        <div class="footer-content">
-            <button id="footerHomeBtn">Home</button>
-            <button class="refer-btn" id="footerReferBtn">Refer</button>
-            <button id="footerWithdrawBtn">Withdraw</button>
+  </div>
+
+  <!-- Refer Popup -->
+  <div class="popup" id="referPopup">
+    <h3>Refer & Earn</h3>
+    <div id="inviteBox"></div>
+    <button class="btn" id="copyReferBtn">Copy Link</button>
+    <button class="btn ghost" id="closeReferBtn">Close</button>
+  </div>
+
+  <!-- Referrals Count Popup -->
+  <div class="popup" id="refCountPopup">
+    <h3>Total Referrals</h3>
+    <p id="refCountText">0</p>
+    <button class="btn ghost" id="closeRefCountBtn">Close</button>
+  </div>
+
+  <!-- Withdraw Popup (JS দিয়ে add হবে, নিচের স্ক্রিপ্টে) -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <button class="btn" id="openWithdraw">Withdraw</button>
+    <button class="btn" id="referBtn">Refer</button>
+    <button class="btn" id="refCountBtn">Referrals Count</button>
+  </div>
+
+  <script>
+    // কনস্ট্যান্টসমূহ
+    const DAILY_AD_LIMIT = 100;
+    const WATCH_REWARD = 0.05;
+    const BONUS_REWARD = 0.06;
+    const REF_REWARD = 0.50;
+
+    // লোকালস্টোরেজ থেকে স্টেট লোড/সেট
+    let state = JSON.parse(localStorage.getItem('earn_state_v2') || 'null');
+    if(!state){
+      state = {balance:0,dailyAdCount:0,referralCount:0,lastResetDate:new Date().toDateString(),creditedRefs:{}};
+      saveState();
+    }
+    function saveState(){localStorage.setItem('earn_state_v2', JSON.stringify(state));}
+    function updateUI(){
+      document.getElementById('balanceAmount').innerText = state.balance.toFixed(2);
+      document.getElementById('refEarnings').innerText = '$'+(state.referralCount*REF_REWARD).toFixed(2);
+      document.getElementById('adLimit').innerText = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
+    }
+    function showStatus(msg,color='info',time=2000){
+      let el=document.getElementById('status');
+      el.innerText=msg;
+      el.style.color=color==='success'?'green':(color==='error'?'red':'#0b79d0');
+      setTimeout(()=>{el.innerText='';},time);
+    }
+
+    // Watch Ad
+    document.getElementById('watchAdBtn').addEventListener('click',()=>{
+      if(state.dailyAdCount>=DAILY_AD_LIMIT){showStatus("Limit reached",'error');return;}
+      if(typeof show_9700803!=='function'){showStatus("Ad not ready",'error');return;}
+      Promise.resolve(show_9700803()).then(()=>{
+        state.dailyAdCount++;
+        state.balance=+(state.balance+WATCH_REWARD).toFixed(2);
+        saveState();updateUI();showStatus(`+ $${WATCH_REWARD.toFixed(2)}`,'success');
+      });
+    });
+
+    // Bonus Button 1 - সরাসরি লিংক ওপেন + বোনাস অ্যাড
+    document.getElementById('bonus1Btn').onclick = function() {
+      window.open("https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5", "_blank");
+      state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
+      saveState(); updateUI();
+      showStatus(`+ $${BONUS_REWARD.toFixed(2)}`, 'success');
+    };
+    // Bonus Button 2 - সরাসরি লিংক ওপেন + বোনাস অ্যাড
+    document.getElementById('bonus2Btn').onclick = function() {
+      window.open("https://countlessdispleased.com/ewjnjyjwji?key=b2e69c19f9b07186c0506ba472bc907d", "_blank");
+      state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
+      saveState(); updateUI();
+      showStatus(`+ $${BONUS_REWARD.toFixed(2)}`, 'success');
+    };
+
+    // Referral setup
+    let userId = localStorage.getItem('earn_user_id_v2');
+    if(!userId){
+      userId='u'+Date.now().toString(36)+Math.floor(Math.random()*9000+1000);
+      localStorage.setItem('earn_user_id_v2',userId);
+    }
+    const inviteURL = `https://earnbyads.vercel.app/?ref=${userId}`;
+    document.getElementById('inviteBox').innerText = inviteURL;
+    document.getElementById('copyReferBtn').onclick = ()=>{navigator.clipboard.writeText(inviteURL);showStatus("Link copied",'success');};
+
+    // Detect incoming referral
+    const params=new URLSearchParams(location.search);
+    if(params.has('ref')){
+      const refId=params.get('ref');
+      if(refId && refId!==userId && !state.creditedRefs[refId]){
+        state.creditedRefs[refId]=true;state.referralCount++;
+        state.balance=+(state.balance+REF_REWARD).toFixed(2);
+        saveState();updateUI();showStatus(`+ $${REF_REWARD.toFixed(2)} referral`,'success');
+      }
+    }
+
+    // Popup handling
+    document.getElementById('referBtn').onclick=()=>{document.getElementById('referPopup').style.display='block';};
+    document.getElementById('closeReferBtn').onclick=()=>{document.getElementById('referPopup').style.display='none';};
+    document.getElementById('refCountBtn').onclick=()=>{document.getElementById('refCountText').innerText=state.referralCount;document.getElementById('refCountPopup').style.display='block';};
+    document.getElementById('closeRefCountBtn').onclick=()=>{document.getElementById('refCountPopup').style.display='none';};
+
+    // Withdraw Popup HTML (footer-এর উপর বা শেষে body-এর মধ্যে ইনজেক্ট)
+    document.body.insertAdjacentHTML('beforeend', `
+      <div class="popup" id="withdrawPopup">
+        <h3>Withdraw</h3>
+        <div style="margin-bottom:8px;">
+          <strong>Methods:</strong><br>
+          <label><input type="radio" name="wdMethod" value="Bkash" checked> বিকাশ</label><br>
+          <label><input type="radio" name="wdMethod" value="Nagad"> নগদ</label><br>
+          <label><input type="radio" name="wdMethod" value="USDT"> USDT</label>
         </div>
-    </footer>
-    <script>
-        // Configuration
-        const DAILY_AD_LIMIT = 100;
-        const REWARD_AMOUNT = 0.05; // 1 ad view = $0.05
-        const MIN_WITHDRAW = 50;
-        const REF_REWARD = 0.50; // Successful referral = $0.50
+        <input type="text" id="wdAccount" placeholder="Account/Wallet Number" style="width:95%;margin-bottom:8px;padding:7px;border-radius:6px;border:1px solid #ddd;"><br>
+        <input type="number" id="wdAmount" min="50" step="0.01" placeholder="Withdraw Amount (min $50)" style="width:95%;margin-bottom:10px;padding:7px;border-radius:6px;border:1px solid #ddd;">
+        <button class="btn" id="submitWithdrawBtn">Withdraw</button>
+        <button class="btn ghost" id="closeWithdrawBtn">Close</button>
+      </div>
+    `);
 
-        // User state
-        let state = {
-            balance: 0.00,
-            dailyAdCount: 0,
-            referralCount: 0
-        };
+    // Withdraw button click
+    document.getElementById('openWithdraw').onclick = function() {
+      if(state.balance < 50) {
+        showStatus('Minimum withdraw $50 required', 'error', 2500);
+        return;
+      }
+      // ফর্ম ক্লিয়ার
+      document.getElementById('wdAccount').value = '';
+      document.getElementById('wdAmount').value = '';
+      document.getElementById('withdrawPopup').style.display = 'block';
+    };
 
-        // Withdraw method state
-        let selectedMethod = "";
+    // Withdraw submit (রিয়ালের মতো ব্যালেন্স কাটা হবে)
+    document.getElementById('submitWithdrawBtn').onclick = function() {
+      let method = document.querySelector('input[name="wdMethod"]:checked').value;
+      let acc = document.getElementById('wdAccount').value.trim();
+      let amt = parseFloat(document.getElementById('wdAmount').value);
+      if(!acc) {
+        showStatus('Enter account/wallet number', 'error', 2000);
+        return;
+      }
+      if(isNaN(amt) || amt < 50) {
+        showStatus('Minimum withdraw $50', 'error', 2000);
+        return;
+      }
+      if(amt > state.balance) {
+        showStatus('Insufficient balance', 'error', 2000);
+        return;
+      }
+      // ব্যালেন্স থেকে টাকা কাটা
+      state.balance = +(state.balance - amt).toFixed(2);
+      saveState();
+      updateUI();
+      document.getElementById('withdrawPopup').style.display = 'none';
+      showStatus(`$${amt.toFixed(2)} withdrawn via ${method} (Demo only)`, 'success', 3000);
+    };
 
-        // UI update function
-        function updateUI() {
-            document.getElementById('balanceAmount').innerText = state.balance.toFixed(2);
-            document.getElementById('adLimit').innerText = DAILY_AD_LIMIT - state.dailyAdCount;
-            document.getElementById('refInfo').innerText = `You have earned $${(state.referralCount * REF_REWARD).toFixed(2)} from referrals.`;
+    // Withdraw Popup close
+    document.getElementById('closeWithdrawBtn').onclick = function() {
+      document.getElementById('withdrawPopup').style.display = 'none';
+    };
+
+    // ------- Digital Spin Section JS ----------
+    const spinRewards = [0.02, 0.05, 0.10, 0.15, 0.02, 0.04];
+    const spinColors = ["#ff5252","#ffd600","#00e676","#2979ff","#f500a0","#ff9100"];
+    const spinLinks = [
+      "https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5",
+      "https://countlessdispleased.com/ewjnjyjwji?key=b2e69c19f9b07186c0506ba472bc907d"
+    ];
+    const spinSVG = document.getElementById("spinSVG");
+    const spinLabel = document.getElementById("spinLabel");
+    const spinBtn = document.getElementById("spinBtn");
+    let spinning = false;
+    let angleOffset = 0;
+
+    // Draw wheel slices dynamically
+    function drawWheel() {
+      let slices = spinRewards.length;
+      let center = 60, radius = 56;
+      spinSVG.innerHTML = "";
+      for(let i=0; i<slices; i++){
+        let startAngle = (i/slices)*2*Math.PI - Math.PI/2;
+        let endAngle = ((i+1)/slices)*2*Math.PI - Math.PI/2;
+        // Arc endpoints
+        let x1 = center + radius * Math.cos(startAngle);
+        let y1 = center + radius * Math.sin(startAngle);
+        let x2 = center + radius * Math.cos(endAngle);
+        let y2 = center + radius * Math.sin(endAngle);
+        // Large arc flag
+        let largeArc = (endAngle-startAngle > Math.PI) ? 1 : 0;
+        // Slice path
+        let path = [
+          `M${center},${center}`,
+          `L${x1},${y1}`,
+          `A${radius},${radius} 0 ${largeArc} 1 ${x2},${y2}`,
+          "Z"
+        ].join(" ");
+        let slice = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        slice.setAttribute("d", path);
+        slice.setAttribute("fill", spinColors[i]);
+        slice.setAttribute("stroke", "#fff");
+        slice.setAttribute("stroke-width", "2");
+        spinSVG.appendChild(slice);
+
+        // Label in middle of slice
+        let labelAngle = (startAngle + endAngle)/2;
+        let lx = center + (radius-24)*Math.cos(labelAngle);
+        let ly = center + (radius-24)*Math.sin(labelAngle)+6;
+        let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", lx);
+        text.setAttribute("y", ly);
+        text.setAttribute("text-anchor","middle");
+        text.setAttribute("fill","#222");
+        text.setAttribute("font-size","13");
+        text.setAttribute("font-family","Arial,sans-serif");
+        text.setAttribute("font-weight","bold");
+        text.textContent = "$"+spinRewards[i].toFixed(2);
+        spinSVG.appendChild(text);
+      }
+    }
+    drawWheel();
+
+    // Advanced spin animation
+    spinBtn.onclick = function(){
+      if(spinning) return;
+      spinning = true;
+      spinLabel.innerText = "?";
+      let slices = spinRewards.length;
+      let idx = Math.floor(Math.random() * slices);
+      let reward = spinRewards[idx];
+      // Final angle to land on winner
+      let sliceAngle = 360/slices;
+      let randomOffset = Math.random()*sliceAngle - sliceAngle/2; // for real feel
+      let finalAngle = 360*5 + (360 - idx*sliceAngle - sliceAngle/2 + randomOffset); // 5 spins + land on index
+      angleOffset = (angleOffset + finalAngle) % 360;
+
+      spinSVG.style.transition = "transform 2.6s cubic-bezier(.23,1.57,.51,.97)";
+      spinSVG.style.transform = `rotate(${finalAngle}deg)`;
+
+      setTimeout(()=>{
+        spinSVG.style.transition = "";
+        spinSVG.style.transform = `rotate(${(finalAngle%360)}deg)`;
+        spinLabel.innerText = `+${reward.toFixed(2)}`;
+        // ব্যালেন্স যোগ ও সেভ
+        let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
+        if(state){
+          state.balance = +(state.balance + reward).toFixed(2);
+          localStorage.setItem('earn_state_v2',JSON.stringify(state));
+          if(typeof updateUI==='function') updateUI();
         }
+        window.open(spinLinks[Math.floor(Math.random()*spinLinks.length)], "_blank");
+        spinning = false;
+      }, 2650);
+    };
+    // ------- End Spin Section JS -------
 
-        // Status message
-        function showStatus(msg, type='info') {
-            const st = document.getElementById('status');
-            st.innerText = msg;
-            st.style.color = type === 'error' ? '#e64a19' : (type === 'success' ? '#388e3c' : '#4a90e2');
-            setTimeout(() => { st.innerText = ''; }, 3000);
-        }
-
-        // Ad reward
-        function handleAdSuccess() {
-            if (state.dailyAdCount < DAILY_AD_LIMIT) {
-                state.balance += REWARD_AMOUNT;
-                state.dailyAdCount += 1;
-                updateUI();
-                showStatus(`You have earned $${REWARD_AMOUNT.toFixed(2)} by watching an ad!`, 'success');
-            } else {
-                showStatus("Today's ad view limit reached!", 'error');
-            }
-        }
-        function handleAdError() {
-            showStatus('Ad failed to load, please try again.', 'error');
-        }
-
-        // Referral reward (simulate a successful referral)
-        function handleReferral() {
-            state.referralCount += 1;
-            state.balance += REF_REWARD;
-            updateUI();
-            showStatus(`Referral successful! You earned $${REF_REWARD.toFixed(2)}.`, 'success');
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            updateUI();
-
-            // In-App Interstitial: auto show ads when app loads
-            show_9700803({
-                type: 'inApp',
-                inAppSettings: {
-                    frequency: 2,
-                    capping: 0.1,
-                    interval: 30,
-                    timeout: 5,
-                    everyPage: false
-                }
-            });
-
-            // Rewarded Interstitial Ad
-            document.getElementById('rewardedBtn').addEventListener('click', function() {
-                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
-                    showStatus("Today's ad view limit reached!", 'error');
-                    return;
-                }
-                show_9700803().then(() => {
-                    handleAdSuccess();
-                }).catch(handleAdError);
-            });
-
-            // Rewarded Popup Ad
-            document.getElementById('popupBtn').addEventListener('click', function() {
-                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
-                    showStatus("Today's ad view limit reached!", 'error');
-                    return;
-                }
-                show_9700803('pop').then(() => {
-                    handleAdSuccess();
-                }).catch(handleAdError);
-            });
-
-            // Watch Ads (Rewarded Interstitial)
-            document.getElementById('watchAdsBtn').addEventListener('click', function() {
-                if (state.dailyAdCount >= DAILY_AD_LIMIT) {
-                    showStatus("Today's ad view limit reached!", 'error');
-                    return;
-                }
-                show_9700803().then(() => {
-                    handleAdSuccess();
-                }).catch(handleAdError);
-            });
-
-            // Footer navigation logic
-            // Home button shows main home section, hides others
-            document.getElementById('footerHomeBtn').addEventListener('click', function() {
-                document.getElementById('mainHome').style.display = 'block';
-                document.getElementById('referPop').style.display = 'none';
-                document.getElementById('withdrawMethodsPop').style.display = 'none';
-                document.getElementById('withdrawFormPop').style.display = 'none';
-            });
-
-            // Refer button logic (show refer page, hide others)
-            const referPop = document.getElementById('referPop');
-            document.getElementById('footerReferBtn').addEventListener('click', function() {
-                document.getElementById('mainHome').style.display = 'none';
-                referPop.style.display = 'block';
-                document.getElementById('withdrawMethodsPop').style.display = 'none';
-                document.getElementById('withdrawFormPop').style.display = 'none';
-            });
-            document.getElementById('referPopCloseBtn').addEventListener('click', function() {
-                referPop.style.display = 'none';
-                document.getElementById('mainHome').style.display = 'block';
-            });
-
-            // Withdraw Footer button logic (show withdraw page, hide others)
-            const withdrawMethodsPop = document.getElementById('withdrawMethodsPop');
-            const withdrawFormPop = document.getElementById('withdrawFormPop');
-            const withdrawMethodTitle = document.getElementById('withdrawMethodTitle');
-            document.getElementById('footerWithdrawBtn').addEventListener('click', function() {
-                document.getElementById('mainHome').style.display = 'none';
-                referPop.style.display = 'none';
-                withdrawMethodsPop.style.display = 'block';
-                withdrawFormPop.style.display = 'none';
-            });
-            document.getElementById('withdrawPopCloseBtn').addEventListener('click', function() {
-                withdrawMethodsPop.style.display = 'none';
-                document.getElementById('mainHome').style.display = 'block';
-            });
-            document.getElementById('withdrawFormPopCloseBtn').addEventListener('click', function() {
-                withdrawFormPop.style.display = 'none';
-                document.getElementById('mainHome').style.display = 'block';
-            });
-
-            // Withdraw method select
-            Array.from(document.querySelectorAll('.withdraw-method-btn')).forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    selectedMethod = btn.getAttribute('data-method');
-                    withdrawMethodTitle.innerText = `Withdraw - ${selectedMethod.charAt(0).toUpperCase() + selectedMethod.slice(1)}`;
-                    withdrawMethodsPop.style.display = 'none';
-                    withdrawFormPop.style.display = 'block';
-                });
-            });
-
-            // Withdraw form logic
-            document.getElementById('withdrawForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const wallet = document.getElementById('wallet').value.trim();
-                const amount = parseFloat(document.getElementById('amount').value);
-
-                if (!wallet || wallet.length < 8) {
-                    showStatus('Please enter a valid wallet number!', 'error');
-                    return;
-                }
-                if (amount < MIN_WITHDRAW) {
-                    showStatus(`Minimum withdraw is $${MIN_WITHDRAW}`, 'error');
-                    return;
-                }
-                if (amount > state.balance) {
-                    showStatus('Insufficient balance!', 'error');
-                    return;
-                }
-
-                showStatus(`Withdraw request sent! Method: ${selectedMethod}, Amount: $${amount.toFixed(2)}`, 'success');
-                state.balance -= amount;
-                updateUI();
-                document.getElementById('withdrawForm').reset();
-                withdrawFormPop.style.display = 'none';
-                document.getElementById('mainHome').style.display = 'block';
-            });
-
-            // Invite/refer logic
-            const userId = "user12345"; // Replace with dynamic user ID if available
-            const inviteURL = `https://yourapp.com/invite?ref=${userId}`;
-            document.getElementById('referInviteLink').innerText = inviteURL;
-
-            document.getElementById('referCopyBtn').addEventListener('click', function() {
-                navigator.clipboard.writeText(inviteURL).then(() => {
-                    showStatus("Refer link copied!", "success");
-                });
-            });
-
-            updateUI();
-        });
-    </script>
+    updateUI();
+  </script>
 </body>
-</html>
+    </html>
