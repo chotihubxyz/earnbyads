@@ -343,7 +343,7 @@
     // State management
     let state = JSON.parse(localStorage.getItem('earn_state_v2') || 'null');
     if(!state){
-      state = {balance:0,dailyAdCount:0,referralCount:0,lastReset:new Date().getTime(),creditedRefs:{}};
+      state = {balance:0,dailyAdCount:0,referralCount:0,lastReset:Date.now(),creditedRefs:{}};
       saveState();
     }
     function saveState(){localStorage.setItem('earn_state_v2', JSON.stringify(state));}
@@ -355,12 +355,12 @@
       return msLeft > 0 ? msLeft : 0;
     }
     function formatTime(ms){
-      if(ms <= 0) return "00:00:00";
+      if(ms<=0) return "00:00:00";
       let totalSec = Math.floor(ms/1000);
       let h = Math.floor(totalSec/3600);
       let m = Math.floor((totalSec%3600)/60);
       let s = totalSec%60;
-      return `${h.toString().padStart(2,0)}:${m.toString().padStart(2,0)}:${s.toString().padStart(2,0)}`;
+      return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
     }
     function updateUI(){
       let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
@@ -378,7 +378,7 @@
         adLimitEl.innerText = adLeft;
       }
     }
-    // Timer show (red, minus live)
+    // Live timer show (red, minus live) using localStorage
     function startResetTimer(){
       let resetTimer = document.getElementById('resetTimer');
       function tick(){
@@ -529,4 +529,4 @@
     };
   </script>
 </body>
-          </html>
+  </html>
