@@ -17,14 +17,6 @@
     .balance .amount{font-size:1.6rem;font-weight:700;color:#2e8b57}
     .balance .meta{font-size:13px;color:#59616a}
     .limit{text-align:center;margin-bottom:12px;color:#59616a;font-size:14px;}
-    .limit .timer{
-      color:#e53935;
-      font-weight:bold;
-      margin-left:7px;
-      font-size:16px;
-      letter-spacing:.03em;
-      display:inline-block;
-    }
     .status{height:26px;text-align:center;margin-bottom:12px;font-weight:600;}
     .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;}
     .warning-line{
@@ -167,7 +159,6 @@
       </div>
       <div class="limit">
         <span id="adLimitBox">Today's remaining ad views: <strong id="adLimit">50</strong></span>
-        <span class="timer" id="resetTimer" style="display:none"></span>
       </div>
       <div class="status" id="status"></div>
       <div class="actions">
@@ -337,7 +328,7 @@
     const WATCH_REWARD = 0.03;
     const BONUS_REWARD = 0.03;
     const REF_REWARD = 0.50;
-    const RESET_HOURS = 15;
+    const RESET_HOURS = 8;
     const RESET_MS = RESET_HOURS * 60 * 60 * 1000;
 
     // State management
@@ -354,46 +345,24 @@
       let msLeft = nextReset - now;
       return msLeft > 0 ? msLeft : 0;
     }
-    function formatTime(ms){
-      if(ms<=0) return "00:00:00";
-      let totalSec = Math.floor(ms/1000);
-      let h = Math.floor(totalSec/3600);
-      let m = Math.floor((totalSec%3600)/60);
-      let s = totalSec%60;
-      return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    }
     function updateUI(){
       let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
       document.getElementById('balanceAmount').innerText = state.balance.toFixed(2);
       document.getElementById('refEarnings').innerText = '$'+(state.referralCount*REF_REWARD).toFixed(2);
       let adLimitEl = document.getElementById('adLimit');
       let adLimitBox = document.getElementById('adLimitBox');
-      let resetTimer = document.getElementById('resetTimer');
-      if(adLeft === 0){
-        adLimitBox.style.display = 'none';
-        resetTimer.style.display = 'inline';
-      }else{
-        adLimitBox.style.display = 'inline';
-        resetTimer.style.display = 'none';
-        adLimitEl.innerText = adLeft;
-      }
+      adLimitEl.innerText = adLeft;
+      adLimitBox.style.display = 'inline';
     }
-    // Live timer show (red, minus live) using localStorage
-    function startResetTimer(){
-      let resetTimer = document.getElementById('resetTimer');
-      function tick(){
-        let ms = timeLeftForReset();
-        if(ms<=0){
-          dailyReset();
-          resetTimer.style.display='none';
-          updateUI();
-        }else{
-          resetTimer.innerText = "লিমিট রিসেট হবে: " + formatTime(ms);
-        }
+    // Periodic reset (NO timer shown)
+    setInterval(function(){
+      let ms = timeLeftForReset();
+      if(ms<=0){
+        dailyReset();
+        updateUI();
       }
-      setInterval(tick, 1000);
-      tick();
-    }
+    }, 5000); // Check every 5 seconds
+
     function dailyReset(){
       state.dailyAdCount = 0;
       state.lastReset = Date.now();
@@ -461,7 +430,6 @@
       document.getElementById('referPopup').style.display='none';
     };
     updateUI();
-    startResetTimer();
     // Withdraw Modal JS
     const withdrawBtn = document.getElementById('withdrawBtn');
     const withdrawModal = document.getElementById('withdrawModal');
@@ -527,6 +495,12 @@
     tgAdminBtn.onclick = function(){
       window.open('https://t.me/earnsbyads','_blank');
     };
+    function showStatus(msg,color='info',time=2000){
+      let el=document.getElementById('status');
+      el.innerText=msg;
+      el.style.color=color==='success'?'green':(color==='error'?'red':'#0b79d0');
+      setTimeout(()=>{el.innerText='';},time);
+    }
   </script>
 </body>
   </html>
