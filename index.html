@@ -10,12 +10,31 @@
     body{margin:0;font-family: Arial, sans-serif;background: linear-gradient(180deg,#f0f9ff,#dff0ff);}
     .wrap{max-width:440px;margin:18px auto 120px;padding:18px;}
     .card{background:#fff;border-radius:14px;box-shadow:0 6px 20px rgba(12,35,55,0.08);padding:18px;}
+    header{display:flex;align-items:center;justify-content:space-between;}
+    header h1{margin:0;font-size:1.35rem;}
+    .subtitle{font-size:13px;color:#7c8a96;font-weight:500;margin-top:2px;}
     .balance{display:flex;justify-content:space-between;gap:12px;padding:12px;background:linear-gradient(90deg,rgba(11,121,208,0.06),rgba(46,139,87,0.03));border-radius:10px;margin-bottom:12px;}
     .balance .amount{font-size:1.6rem;font-weight:700;color:#2e8b57}
     .balance .meta{font-size:13px;color:#59616a}
     .limit{text-align:center;margin-bottom:12px;color:#59616a;font-size:14px;}
+    .limit .timer{
+      color:#e53935;
+      font-weight:bold;
+      margin-left:7px;
+      font-size:16px;
+      letter-spacing:.03em;
+    }
     .status{height:26px;text-align:center;margin-bottom:12px;font-weight:600;}
     .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px;}
+    .warning-line{
+      text-align:center;
+      color:#e53935;
+      font-size:15px;
+      font-weight:bold;
+      margin:10px 0 0 0;
+      padding:2px 0;
+      letter-spacing:0.03em;
+    }
     .btn{
       background:#0b79d0;color:#fff;border:none;padding:10px 14px;border-radius:9px;
       cursor:pointer;font-weight:600;box-shadow:0 6px 12px rgba(11,121,208,0.12);
@@ -23,8 +42,11 @@
       transition: background 0.2s,transform 0.18s;
     }
     .btn:active{background:#2979ff;transform:scale(.98);}
-    .footer{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,0.98);border-top:1px solid #e7eef8;padding:10px 8px;display:flex;justify-content:center;gap:10px;z-index:1200;box-shadow:0 -6px 20px rgba(12,35,55,0.03);}
-    /* Spin Wheel Digital Design */
+    .footer{
+      position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,0.98);
+      border-top:1px solid #e7eef8;padding:10px 8px;display:flex;justify-content:center;gap:10px;z-index:1200;
+      box-shadow:0 -6px 20px rgba(12,35,55,0.03);
+    }
     .spin-card{
       margin: 22px 0 20px 0;
       padding: 18px 0 6px 0;
@@ -44,7 +66,7 @@
       filter: drop-shadow(0 4px 18px #0002) blur(0.1px);
       border-radius:50%;
       background:radial-gradient(#fff8 62%,#fff0 100%);
-      transition: filter .35s;
+      transition: filter .35s, transform 2.7s cubic-bezier(.23,1.57,.51,.97);
       cursor: pointer;
     }
     .spin-indicator {
@@ -75,7 +97,6 @@
     .spin-prize-label.show {
       opacity:1;transform:translate(-50%,10px) scale(1.20);
     }
-    /* Withdraw Modal */
     .modal-bg {
       display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(32,32,32,0.18);z-index:2100;
     }
@@ -94,19 +115,36 @@
     .modal .modal-close-btn{background:#eee;color:#0b79d0;font-weight:bold;margin-right:8px;}
     .modal .error-msg{color:#d32f2f;font-size:13px;height:18px;margin-bottom:5px;}
     .modal .success-msg{color:#267d31;font-size:13px;height:18px;margin-bottom:5px;}
-    /* Refer Popup */
-    .popup {
+    .coin-rate-under{
+      text-align:center;
+      color:#e53935;
+      font-size:15px;
+      font-weight:bold;
+      margin:7px 0 0 0;
+      letter-spacing:.04em;
+    }
+    .refer-popup {
       display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
-      min-width:280px;max-width:94vw;background:#fff;
-      border-radius:14px;padding:18px 13px 12px 14px;
-      box-shadow:0 8px 36px #0003;z-index:2300;
+      min-width:280px;max-width:99vw;background:#fff;
+      border-radius:16px;padding:22px 18px 16px 18px;
+      box-shadow:0 8px 36px #0003;z-index:2400;
       text-align:center;
     }
-    .popup h3{margin:4px 0 11px 0;color:#0b79d0;font-size:1.18rem;}
-    .popup input[type="text"]{width:91%;padding:6px 5px;font-size:15px;border-radius:6px;border:1px solid #ddd;margin-bottom:8px;}
-    .popup .btn{margin:6px 9px 0 0;}
-    .popup .refer-link{font-size:15px;color:#267d31;word-break:break-all;margin:5px 0 12px 0;}
-    .popup .count-label{font-size:15px;color:#0b79d0;margin:8px 0;}
+    .refer-popup h3{margin:4px 0 11px 0;color:#0b79d0;font-size:1.18rem;}
+    .refer-popup .refer-link{font-size:15px;color:#267d31;word-break:break-all;margin:5px 0 12px 0;}
+    .refer-popup .btn{margin:6px 11px 0 0;}
+    .contact-popup{
+      display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+      background:#fff;padding:26px 22px 19px 22px;border-radius:18px;box-shadow:0 8px 40px #0003;z-index:2500;
+      min-width:190px;text-align:center;
+    }
+    .contact-popup .btn{
+      display:block;width:90%;margin:12px auto 8px auto;
+      font-size:1.09rem;padding:11px 0;
+      border-radius:10px;
+      font-weight:700;
+    }
+    .contact-popup .btn:last-child{margin-bottom:2px;}
   </style>
 </head>
 <body>
@@ -114,8 +152,8 @@
     <div class="card">
       <header>
         <h1>Earn By Ads</h1>
-        <div class="subtitle">Watch ads → earn. Refer friends → extra bonus.</div>
       </header>
+      <div class="subtitle">Watch ads → earn. Refer friends → extra bonus.</div>
       <div class="balance">
         <div>
           <div class="small-muted">Your Balance</div>
@@ -126,11 +164,17 @@
           <div id="refEarnings">$0.00</div>
         </div>
       </div>
-      <div class="limit">Today's remaining ad views: <strong id="adLimit">100</strong></div>
+      <div class="limit">
+        <span id="adLimitBox">Today's remaining ad views: <strong id="adLimit">50</strong></span>
+        <span class="timer" id="resetTimer" style="display:none"></span>
+      </div>
       <div class="status" id="status"></div>
       <div class="actions">
         <button class="btn" id="watchAdBtn">▶️Watch Ads1</button>
         <button class="btn" id="bonus1Btn">▶️Watch Ads2</button>
+      </div>
+      <div class="warning-line">
+        এডস রান হলে ৩০ সেকেন্ড এড দেখে বেরিয়ে আসুন
       </div>
       <!-- SPIN SECTION -->
       <div class="spin-card" style="margin-top:22px;">
@@ -145,21 +189,14 @@
           <div class="spin-prize-label" id="spinPrizeLabel">+0.00</div>
         </div>
       </div>
-      <!-- END SPIN SECTION -->
     </div>
   </div>
   <!-- Refer Popup -->
-  <div class="popup" id="referPopup">
+  <div class="refer-popup" id="referPopup">
     <h3>Refer & Earn</h3>
     <div class="refer-link" id="inviteBox"></div>
     <button class="btn" id="copyReferBtn">Copy Link</button>
     <button class="btn" id="closeReferBtn">Close</button>
-  </div>
-  <!-- Referrals Count Popup -->
-  <div class="popup" id="refCountPopup">
-    <h3>Total Referrals</h3>
-    <div class="count-label">You have <span id="refCountText">0</span> referrals.</div>
-    <button class="btn" id="closeRefCountBtn">Close</button>
   </div>
   <!-- Withdraw Modal -->
   <div class="modal-bg" id="wdModalBg"></div>
@@ -175,35 +212,42 @@
       </div>
       <label for="wdAccount">Account/Wallet Number:</label>
       <input type="text" id="wdAccount" required autocomplete="off" placeholder="Enter account or wallet number">
-      <label for="wdAmount">Withdraw Amount (min $50):</label>
-      <input type="number" id="wdAmount" step="0.01" min="50" required placeholder="Enter amount">
+      <label for="wdAmount">Withdraw Amount (min $30):</label>
+      <input type="number" id="wdAmount" step="0.01" min="30" required placeholder="Enter amount">
       <div class="modal-actions">
         <button type="button" class="btn modal-close-btn" id="closeWithdrawModal">Cancel</button>
         <button type="submit" class="btn">Withdraw</button>
       </div>
       <div class="success-msg" id="wdSuccessMsg"></div>
+      <div class="coin-rate-under">1$ Coin = 20 BDT</div>
     </form>
+  </div>
+  <!-- Contact Popup -->
+  <div class="contact-popup" id="contactPopup">
+    <h3>Contact Us</h3>
+    <button class="btn" id="tgBotBtn">Bot</button>
+    <button class="btn" id="tgAdminBtn">Admin</button>
+    <button class="btn" id="closeContactBtn" style="background:#eee;color:#0b79d0;">Close</button>
   </div>
   <!-- Footer -->
   <div class="footer">
     <button class="btn" id="withdrawBtn">Withdraw</button>
     <button class="btn" id="referBtn">Refer</button>
-    <button class="btn" id="refCountBtn">Referrals Count</button>
+    <button class="btn" id="contactBtn">Contact us</button>
   </div>
   <script>
-    // Spin section config and logic
-    const spinRewards = [0.02, 0.05, 0.10, 0.15, 0.02, 0.04];
+    // Spin config and logic
+    const spinRewards = [0.02, 0.02, 0.05, 0.03, 0.05, 0.07];
     const spinColors = ["#ff5252","#ffd600","#00e676","#2979ff","#f500a0","#ff9100"];
     const spinSVG = document.getElementById("spinSVG");
     const spinLabelMain = document.getElementById("spinLabelMain");
     const spinPrizeLabel = document.getElementById("spinPrizeLabel");
-    let spinning = false, angleOffset = 0;
+    let spinning = false, currentRotation = 0;
 
     function drawWheel() {
       let slices = spinRewards.length;
       let center = 90, radius = 88;
       spinSVG.innerHTML = "";
-      // Draw slices
       for(let i=0; i<slices; i++){
         let startAngle = (i/slices)*2*Math.PI - Math.PI/2;
         let endAngle = ((i+1)/slices)*2*Math.PI - Math.PI/2;
@@ -225,7 +269,6 @@
         slice.setAttribute("stroke-width", "2");
         spinSVG.appendChild(slice);
       }
-      // Draw labels
       for(let i=0; i<slices; i++){
         let angle = ((i+0.5)/slices)*2*Math.PI - Math.PI/2;
         let tx = center + (radius-26)*Math.cos(angle);
@@ -244,32 +287,30 @@
     }
     drawWheel();
 
-    // Spin event: clicking spin-label-main triggers the spin and shows Rewarded Popup ad (no direct link)
+    // Spin event
     spinLabelMain.onclick = function(){
       if(spinning) return;
-      spinning=true;
-      spinLabelMain.innerText="SPIN";
+      spinning = true;
+      spinLabelMain.innerText = "SPIN";
       spinPrizeLabel.classList.remove("show");
       let slices = spinRewards.length;
       let idx = Math.floor(Math.random() * slices);
       let reward = spinRewards[idx];
       let sliceAngle = 360/slices;
       let randomOffset = Math.random()*sliceAngle - sliceAngle/2;
-      let finalAngle = 360*5 + (360 - idx*sliceAngle - sliceAngle/2 + randomOffset);
-      angleOffset = (angleOffset + finalAngle) % 360;
+      let finalRotation = currentRotation + (360*5) + (360 - idx*sliceAngle - sliceAngle/2 + randomOffset);
       spinSVG.style.transition = "transform 2.7s cubic-bezier(.23,1.57,.51,.97)";
-      spinSVG.style.transform = `rotate(${finalAngle}deg)`;
+      spinSVG.style.transform = `rotate(${finalRotation}deg)`;
       spinSVG.style.filter = "drop-shadow(0 8px 40px #0b79d099) blur(0.5px)";
 
       setTimeout(()=>{
+        currentRotation = finalRotation % 360;
         spinSVG.style.transition = "";
-        spinSVG.style.transform = `rotate(${(finalAngle%360)}deg)`;
+        spinSVG.style.transform = `rotate(${currentRotation}deg)`;
         spinSVG.style.filter = "drop-shadow(0 4px 18px #0002) blur(0.1px)";
         spinLabelMain.innerText = "WIN!";
         spinPrizeLabel.innerText = `+${reward.toFixed(2)}`;
         spinPrizeLabel.classList.add("show");
-
-        // Rewarded Popup ad show (no direct link)
         if(typeof show_9700803 === 'function'){
           show_9700803('pop').then(()=>{
             let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
@@ -282,7 +323,6 @@
             // If ad not completed, do not add reward
           });
         }
-
         setTimeout(()=>{
           spinPrizeLabel.classList.remove("show");
           spinLabelMain.innerText="SPIN";
@@ -291,93 +331,136 @@
       }, 2750);
     };
 
-    // ---- Demo balance system for ad buttons ----
-    const DAILY_AD_LIMIT = 100;
-    const WATCH_REWARD = 0.05;
-    const BONUS_REWARD = 0.06;
+    // Ad system settings
+    const DAILY_AD_LIMIT = 50;
+    const WATCH_REWARD = 0.03;
+    const BONUS_REWARD = 0.03;
     const REF_REWARD = 0.50;
-    // লোকালস্টোরেজ থেকে স্টেট লোড/সেট
+    const RESET_HOURS = 15;
+    const RESET_MS = RESET_HOURS * 60 * 60 * 1000;
+
+    // State management
     let state = JSON.parse(localStorage.getItem('earn_state_v2') || 'null');
     if(!state){
-      state = {balance:0,dailyAdCount:0,referralCount:0,lastResetDate:new Date().toDateString(),creditedRefs:{}};
+      state = {balance:0,dailyAdCount:0,referralCount:0,lastReset:new Date().getTime(),creditedRefs:{}};
       saveState();
     }
     function saveState(){localStorage.setItem('earn_state_v2', JSON.stringify(state));}
+
+    function timeLeftForReset(){
+      let now = Date.now();
+      let nextReset = (state.lastReset || now) + RESET_MS;
+      let msLeft = nextReset - now;
+      return msLeft > 0 ? msLeft : 0;
+    }
+    function formatTime(ms){
+      if(ms <= 0) return "00:00:00";
+      let totalSec = Math.floor(ms/1000);
+      let h = Math.floor(totalSec/3600);
+      let m = Math.floor((totalSec%3600)/60);
+      let s = totalSec%60;
+      return `${h.toString().padStart(2,0)}:${m.toString().padStart(2,0)}:${s.toString().padStart(2,0)}`;
+    }
     function updateUI(){
+      let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
       document.getElementById('balanceAmount').innerText = state.balance.toFixed(2);
       document.getElementById('refEarnings').innerText = '$'+(state.referralCount*REF_REWARD).toFixed(2);
-      document.getElementById('adLimit').innerText = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
-      document.getElementById('refCountText').innerText = state.referralCount;
+      let adLimitEl = document.getElementById('adLimit');
+      let adLimitBox = document.getElementById('adLimitBox');
+      let resetTimer = document.getElementById('resetTimer');
+      if(adLeft === 0){
+        adLimitBox.style.display = 'none';
+        resetTimer.style.display = 'inline';
+      }else{
+        adLimitBox.style.display = 'inline';
+        resetTimer.style.display = 'none';
+        adLimitEl.innerText = adLeft;
+      }
     }
-    function showStatus(msg,color='info',time=2000){
-      let el=document.getElementById('status');
-      el.innerText=msg;
-      el.style.color=color==='success'?'green':(color==='error'?'red':'#0b79d0');
-      setTimeout(()=>{el.innerText='';},time);
+    // Timer show (red)
+    function startResetTimer(){
+      let resetTimer = document.getElementById('resetTimer');
+      function tick(){
+        let ms = timeLeftForReset();
+        if(ms<=0){
+          dailyReset();
+          resetTimer.style.display='none';
+          updateUI();
+        }else{
+          resetTimer.innerText = "লিমিট রিসেট হবে: " + formatTime(ms);
+        }
+      }
+      setInterval(tick, 1000);
+      tick();
     }
-
-    // Watch Ad 1: Rewarded Popup (রিওয়ার্ডসহ সরাসরি অফার পেজ)
+    function dailyReset(){
+      state.dailyAdCount = 0;
+      state.lastReset = Date.now();
+      saveState();
+      updateUI();
+    }
+    // Watch Ads1: reward after 5s of click and only if ad runs
     document.getElementById('watchAdBtn').onclick = function() {
-      if(state.dailyAdCount >= DAILY_AD_LIMIT) { showStatus("Limit reached",'error'); return; }
+      let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
+      if(adLeft<=0){
+        showStatus("Limit reached",'error',3000);
+        return;
+      }
       if(typeof show_9700803 !== 'function') { showStatus("Ad not ready",'error'); return; }
       show_9700803('pop').then(()=>{
-        state.dailyAdCount++;
-        state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
-        saveState();
-        updateUI();
-        showStatus(`+ $${BONUS_REWARD.toFixed(2)}`, 'success');
+        setTimeout(()=>{
+          state.dailyAdCount++;
+          saveState();
+          state.balance = +(state.balance + BONUS_REWARD).toFixed(2);
+          saveState();
+          updateUI();
+          showStatus(`+ $${BONUS_REWARD.toFixed(2)}`, 'success');
+        },5000);
       }).catch(()=>{
         showStatus('Ad not completed', 'error');
       });
     };
-
-    // Watch Ad 2: Rewarded Interstitial (রিওয়ার্ডসহ ব্যানার অ্যাড)
+    // Watch Ads2: reward after 5s of click and only if ad runs
     document.getElementById('bonus1Btn').onclick = function() {
-      if(state.dailyAdCount >= DAILY_AD_LIMIT) { showStatus("Limit reached",'error'); return; }
+      let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
+      if(adLeft<=0){
+        showStatus("Limit reached",'error',3000);
+        return;
+      }
       if(typeof show_9700803 !== 'function') { showStatus("Ad not ready",'error'); return; }
       show_9700803().then(()=>{
-        state.dailyAdCount++;
-        state.balance = +(state.balance + WATCH_REWARD).toFixed(2);
-        saveState();
-        updateUI();
-        showStatus(`+ $${WATCH_REWARD.toFixed(2)}`,'success');
+        setTimeout(()=>{
+          state.dailyAdCount++;
+          saveState();
+          state.balance = +(state.balance + WATCH_REWARD).toFixed(2);
+          saveState();
+          updateUI();
+          showStatus(`+ $${WATCH_REWARD.toFixed(2)}`,'success');
+        },5000);
       }).catch(()=>{
         showStatus('Ad not completed','error');
       });
     };
-
-    // Refer system
+    // REFER SYSTEM - fixed and NEW POPUP
     let userId = localStorage.getItem('earn_user_id_v2');
     if(!userId){
       userId='u'+Date.now().toString(36)+Math.floor(Math.random()*9000+1000);
       localStorage.setItem('earn_user_id_v2',userId);
     }
-    // Use fixed app link for refer
-    const inviteURL = 'https://t.me/earnbyadbot/?ref=' + userId;
-    document.getElementById('inviteBox').innerText = inviteURL;
-    document.getElementById('copyReferBtn').onclick = ()=>{navigator.clipboard.writeText(inviteURL);showStatus("Link copied",'success');};
-    // Incoming ref detection
-    const params=new URLSearchParams(location.search);
-    if(params.has('ref')){
-      const refId=params.get('ref');
-      if(refId && refId!==userId && !state.creditedRefs[refId]){
-        state.creditedRefs[refId]=true;state.referralCount++;
-        state.balance=+(state.balance+REF_REWARD).toFixed(2);
-        saveState();updateUI();showStatus(`+ $${REF_REWARD.toFixed(2)} referral`,'success');
-      }
-    }
-
-    // Refer Popup handling
-    document.getElementById('referBtn').onclick=()=>{document.getElementById('referPopup').style.display='block';};
-    document.getElementById('closeReferBtn').onclick=()=>{document.getElementById('referPopup').style.display='none';};
-    document.getElementById('refCountBtn').onclick=()=>{
-      document.getElementById('refCountText').innerText=state.referralCount;
-      document.getElementById('refCountPopup').style.display='block';
+    const appLink = 'https://earnbyads.vercel.app/?ref=' + userId;
+    document.getElementById('inviteBox').innerText = appLink;
+    document.getElementById('referBtn').onclick=function(){
+      document.getElementById('referPopup').style.display='block';
     };
-    document.getElementById('closeRefCountBtn').onclick=()=>{document.getElementById('refCountPopup').style.display='none';};
-
+    document.getElementById('copyReferBtn').onclick = function(){
+      navigator.clipboard.writeText(appLink);
+      showStatus("Link copied",'success');
+    };
+    document.getElementById('closeReferBtn').onclick = function(){
+      document.getElementById('referPopup').style.display='none';
+    };
     updateUI();
-
+    startResetTimer();
     // Withdraw Modal JS
     const withdrawBtn = document.getElementById('withdrawBtn');
     const withdrawModal = document.getElementById('withdrawModal');
@@ -400,7 +483,6 @@
     }
     closeWithdrawModal.onclick = closeWModal;
     wdModalBg.onclick = closeWModal;
-
     withdrawForm.onsubmit = function(e) {
       e.preventDefault();
       wdErrorMsg.innerText = "";
@@ -412,8 +494,8 @@
         wdErrorMsg.innerText = "Account/Wallet number required!";
         return;
       }
-      if(isNaN(amount) || amount < 50) {
-        wdErrorMsg.innerText = "Minimum withdraw $50!";
+      if(isNaN(amount) || amount < 30) {
+        wdErrorMsg.innerText = "Minimum withdraw $30!";
         return;
       }
       if(amount > state.balance) {
@@ -426,6 +508,24 @@
       wdSuccessMsg.innerText = `Withdraw request ($${amount.toFixed(2)}) sent via ${method}.`;
       setTimeout(closeWModal, 1700);
     };
+    // Contact Popup
+    const contactBtn = document.getElementById('contactBtn');
+    const contactPopup = document.getElementById('contactPopup');
+    const tgBotBtn = document.getElementById('tgBotBtn');
+    const tgAdminBtn = document.getElementById('tgAdminBtn');
+    const closeContactBtn = document.getElementById('closeContactBtn');
+    contactBtn.onclick = function(){
+      contactPopup.style.display='block';
+    };
+    closeContactBtn.onclick = function(){
+      contactPopup.style.display='none';
+    };
+    tgBotBtn.onclick = function(){
+      window.open('https://t.me/earnbyadbot','_blank');
+    };
+    tgAdminBtn.onclick = function(){
+      window.open('https://t.me/earnsbyads','_blank');
+    };
   </script>
 </body>
-            </html>
+  </html>
