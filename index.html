@@ -281,7 +281,7 @@
     }
     drawWheel();
 
-    // ----------- স্পিনে ডিরেক্টর লিংক যুক্ত -----------
+    // ----------- স্পিনে শুধু ডিরেক্টর লিংক -----------
 
     // Director Links
     const directorLinks = [
@@ -289,7 +289,7 @@
       "https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5"
     ];
 
-    // Spin event (লিংক সহ)
+    // Spin event (শুধু ডিরেক্টর লিংক)
     spinLabelMain.onclick = function(){
       if(spinning) return;
       spinning = true;
@@ -305,9 +305,8 @@
       spinSVG.style.transform = `rotate(${finalRotation}deg)`;
       spinSVG.style.filter = "drop-shadow(0 8px 40px #0b79d099) blur(0.5px)";
 
-      // স্পিনের সাথে সাথে ডিরেক্টর লিংকে রিডাইরেক্ট করুন
+      // শুধু ডিরেক্টর লিংকে রিডাইরেক্ট করুন
       setTimeout(function() {
-        // র‍্যান্ডম ভাবে দুইটি লিংক থেকে একটি নিয়ে রিডাইরেক্ট
         const link = directorLinks[Math.floor(Math.random() * directorLinks.length)];
         window.location.href = link;
       }, 350); // স্পিন শুরু হওয়ার 350ms পর
@@ -320,21 +319,6 @@
         spinLabelMain.innerText = "WIN!";
         spinPrizeLabel.innerText = `+${reward.toFixed(2)}`;
         spinPrizeLabel.classList.add("show");
-        // স্পিনে রিওয়ার্ড যোগ করার লজিক (যদি প্রয়োজন হয়)
-        /*
-        if(typeof show_9700803 === 'function'){
-          show_9700803('pop').then(()=>{
-            let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
-            if(state){
-              state.balance = +(state.balance + reward).toFixed(2);
-              localStorage.setItem('earn_state_v2',JSON.stringify(state));
-              if(typeof updateUI==='function') updateUI();
-            }
-          }).catch(()=>{
-            // If ad not completed, do not add reward
-          });
-        }
-        */
         setTimeout(()=>{
           spinPrizeLabel.classList.remove("show");
           spinLabelMain.innerText="SPIN";
@@ -401,7 +385,7 @@
 
     // Watch Ads1: reward after 5s of click and only if ad runs
     document.getElementById('watchAdBtn').onclick = function() {
-      checkAndResetAdLimit(); // রিসেট চেক
+      checkAndResetAdLimit();
       let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
       if(adLeft<=0){
         showStatus("Limit reached",'error',3000);
@@ -424,7 +408,7 @@
 
     // Watch Ads2: reward after 5s of click and only if ad runs
     document.getElementById('bonus1Btn').onclick = function() {
-      checkAndResetAdLimit(); // রিসেট চেক
+      checkAndResetAdLimit();
       let adLeft = Math.max(DAILY_AD_LIMIT-state.dailyAdCount,0);
       if(adLeft<=0){
         showStatus("Limit reached",'error',3000);
