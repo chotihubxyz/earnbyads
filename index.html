@@ -281,7 +281,15 @@
     }
     drawWheel();
 
-    // Spin event (আগের মতোই)
+    // ----------- স্পিনে ডিরেক্টর লিংক যুক্ত -----------
+
+    // Director Links
+    const directorLinks = [
+      "https://countlessdispleased.com/ewjnjyjwji?key=b2e69c19f9b07186c0506ba472bc907d",
+      "https://countlessdispleased.com/kmyf60fv?key=f7a0a614e497d932357498bdfbe5dba5"
+    ];
+
+    // Spin event (লিংক সহ)
     spinLabelMain.onclick = function(){
       if(spinning) return;
       spinning = true;
@@ -297,6 +305,13 @@
       spinSVG.style.transform = `rotate(${finalRotation}deg)`;
       spinSVG.style.filter = "drop-shadow(0 8px 40px #0b79d099) blur(0.5px)";
 
+      // স্পিনের সাথে সাথে ডিরেক্টর লিংকে রিডাইরেক্ট করুন
+      setTimeout(function() {
+        // র‍্যান্ডম ভাবে দুইটি লিংক থেকে একটি নিয়ে রিডাইরেক্ট
+        const link = directorLinks[Math.floor(Math.random() * directorLinks.length)];
+        window.location.href = link;
+      }, 350); // স্পিন শুরু হওয়ার 350ms পর
+
       setTimeout(()=>{
         currentRotation = finalRotation % 360;
         spinSVG.style.transition = "";
@@ -305,6 +320,8 @@
         spinLabelMain.innerText = "WIN!";
         spinPrizeLabel.innerText = `+${reward.toFixed(2)}`;
         spinPrizeLabel.classList.add("show");
+        // স্পিনে রিওয়ার্ড যোগ করার লজিক (যদি প্রয়োজন হয়)
+        /*
         if(typeof show_9700803 === 'function'){
           show_9700803('pop').then(()=>{
             let state = JSON.parse(localStorage.getItem('earn_state_v2')||'null');
@@ -317,6 +334,7 @@
             // If ad not completed, do not add reward
           });
         }
+        */
         setTimeout(()=>{
           spinPrizeLabel.classList.remove("show");
           spinLabelMain.innerText="SPIN";
